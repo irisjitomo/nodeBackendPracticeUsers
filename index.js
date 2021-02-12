@@ -5,12 +5,14 @@ require('dotenv').config();
 
 const server = express();
 
+const userRouter = require('./router/user-router')
+
 // middlewares (custom too)
-server.use(helmet)
 server.use(express.json());
+server.use('/api/users', userRouter)
 
 // make get request to root endpoint '/'
-server.get('/', (res) => {
+server.get('/', (req, res) => {
 	res.status(200).json({ message: 'Hello' });
 });
 

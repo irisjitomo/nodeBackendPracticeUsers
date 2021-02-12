@@ -1,6 +1,4 @@
-const dbEngine = 'development'
 const knex = require('knex')
+const config = require('../knexfile.js')
 
-const config = require('../knexfile')
-
-module.exports = knex(config)
+module.exports = knex(config.development)

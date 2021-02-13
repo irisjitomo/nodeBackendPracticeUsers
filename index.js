@@ -9,7 +9,7 @@ const userRouter = require('./router/user-router')
 
 // middlewares (custom too)
 server.use(express.json());
-server.use('/api/users', userRouter)
+server.use('/api', userRouter)
 
 // make get request to root endpoint '/'
 server.get('/', (req, res) => {

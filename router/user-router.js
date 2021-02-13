@@ -2,8 +2,18 @@ const router = require('express').Router()
 
 const users = require('./user-model');
 
+// router.get('/users', (req, res) => {
+//     users.getUsers()
+//     .then(users => {
+//         res.status(200).json(users)
+//     })
+//     .catch(err => {
+//         res.status(500).json({message: err})
+//     })
+// })
+
 router.get('/users', (req, res) => {
-    users.getUsers()
+    users.getLessThan10AndMoreThan10()
     .then(users => {
         res.status(200).json(users)
     })

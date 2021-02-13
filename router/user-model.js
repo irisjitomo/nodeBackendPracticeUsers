@@ -5,11 +5,23 @@ module.exports = {
     addUser,
     editUser,
     findById,
-    deleteUser
+    deleteUser,
+    getNameOnly,
+    getLessThan10AndMoreThan10
 }
 
 function getUsers() {
     return db('users')
+}
+
+function getNameOnly() {
+    return db.select('name').table('users')
+}
+
+function getLessThan10AndMoreThan10() {
+    return db('users')
+    .where('id', '<', 7)
+    .orWhere('id', '>', 9)
 }
 
 function findById(id) {

@@ -26,7 +26,7 @@ function addUser(user) {
 
 function editUser(id, user) {
     return db('users')
-    .where({ id: Number(id)})
+    .where('id', Number(id))
     .update(user)
 }
 

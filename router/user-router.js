@@ -27,8 +27,6 @@ router.get('/users/:id', (req, res) => {
     })
 })
 
-
-
 router.post('/users', (req, res) => {
     let newUser = req.body
     if (!newUser.name) {
@@ -53,6 +51,27 @@ router.delete('/users/:id', (req, res) => {
     .catch(() => {
         res.status(500).json({error: 'user could not be removed'})
     })
+})
+
+router.put('/users/:id', (req, res) => {
+    let {id} = req.params;
+    let updatedBody = req.body
+    if (!updatedBody.name) {
+        res.status(400).json({message: `${updatedBody} does not include name`})
+    } else {
+        users
+        .editUser(id, updatedBody)
+        .then(updatedUser => {
+            if (updatedUser) {
+                res.status(200).json(updatedUser)
+            } else {
+                res.status(400).json({message: 'user with this ID does not exist'})
+            }
+        })
+        .catch(() => {
+            res.status(500).json({error: 'could not complete request'})
+        })
+    }
 })
 
 module.exports = router
